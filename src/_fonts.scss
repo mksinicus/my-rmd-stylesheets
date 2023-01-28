@@ -1,0 +1,99 @@
+$sans: false !default;
+
+// See https://sass-lang.com/documentation/variables#flow-control-scope
+// Needs to be declared at first before assigned new value in flow control
+$base-font: null;
+$cjk-font: null;
+$deva-font: null;
+$arab-font: null;
+$math-font: null;
+$fallback: null;
+
+// For a trick for print media. Keep browsing.
+$base-sans: "Roboto", "Noto Sans", "DejaVu Sans";
+$cjk-sans: "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei",
+           "HeiTi";
+$deva-sans: "Noto Sans Devanagari"; 
+$arab-sans: "Noto Sans Arabic";
+$math-sans: "Fira Math", "FiraGO", math, sans-serif;
+$base-serif: "STIX Two Text", Times, "Noto Serif";
+$cjk-serif: "Noto Serif CJK SC", "Source Han Serif SC", "华文中宋",
+           "HanaMinB";
+$deva-serif: "Siddhanta", "Noto Serif Devanagari";
+$arab-serif: "Noto Naskh Arabic";
+$math-serif: "STIX Two Math", "STIX Two Text", math, serif;
+
+@if $sans {
+  $base-font: $base-sans;
+  $cjk-font: $cjk-sans;
+  $deva-font: $deva-sans;
+  $arab-font: $arab-sans;
+  $math-font: $math-sans;
+  $fallback: sans-serif;
+} @else {
+  $base-font: $base-serif;
+  $cjk-font: $cjk-serif;
+  $deva-font: $deva-serif;
+  $arab-font: $arab-serif;
+  $math-font: $math-serif;
+  $fallback: serif;
+}
+
+$mono-font: "Iosevka", "Sarasa Mono SC", "Noto Sans Mono", 
+            "Noto Sans Mono CJK SC", "Consolas", "Microsoft YaHei", "HeiTi",
+            monospace !important;
+$main-font: $base-font, $cjk-font, $deva-font, $arab-font, $fallback;
+
+body {
+  font-family: $main-font;
+  font-size: 16px;
+  line-height: 1.6em;
+  @media print {
+    & {
+      font-size: 13px;
+      line-height: 1.4em;
+    }
+  }
+}
+
+math {
+  font-family: $math-font;
+}
+mtext {
+  font-family: $main-font;
+}
+
+code, kbd, pre {
+  font-family: $mono-font;
+  font-variant-ligatures: none;
+}
+
+%lang-ar {
+  direction: rtl;
+  font-family: $arab-font, $fallback;
+  font-style: normal !important;
+}
+[lang]:lang(ar) {
+  @extend %lang-ar;
+}
+.arab {
+  @extend %lang-ar;
+  font-size: 1.2em;
+}
+
+.deva {
+  font-family: $deva-font, $fallback;
+  font-size: 1.2em;
+}
+
+// Here's the trick. It is unpreferable to use bold serif for CJK printed text.
+// No more `@font-face` tricks that suck at compatibility.
+@media print {
+  h1, h2, strong, th {
+    // Variables are static once assigned... So we need to assign again.
+    $cjk-font: $cjk-sans;
+    $main-font: $base-font, $cjk-font, $deva-font, $arab-font, $fallback;
+    font-family: $main-font;
+    font-weight: bold;
+  }
+}

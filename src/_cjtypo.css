@@ -1,0 +1,13 @@
+/* CJ-Typo Copyright (c) 2020 Zhou Xiaojie. License: MIT 
+ * See github.com/hiugiak/cj-typo */
+.halfwidth {
+  font-feature-settings: "halt"
+}
+
+.inherit {
+  font-feature-settings: inherit
+}
+
+.extra-spaced {
+  letter-spacing: .25em;
+}

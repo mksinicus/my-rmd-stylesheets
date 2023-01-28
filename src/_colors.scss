@@ -1,0 +1,14 @@
+$bg-light: #ffffff;
+$fg-light: #333333;
+$fg-print: #000000;
+
+$sisu: #0062ac;
+$sisu-lighter: #00a4e3;
+
+html {
+  background-color: $bg-light;
+  color: $fg-light;
+  @media print {
+    & { color: $fg-print }
+  }
+}

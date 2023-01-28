@@ -1,0 +1,70 @@
+// Fonts are loaded separately
+@use 'shared' as *;
+@use 'colors';
+
+// Style begin
+body {
+  max-width: 50rem;
+  margin: 1em auto;
+}
+
+h1, h2, h3, h4, h5 {
+  line-height: 1.3em;
+  margin: 1.1rem 0;
+  & + h4 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+h3, h4, h5 {
+  font-weight: bold;
+}
+h4 + h4 {
+  margin-top: 0rem;
+}
+
+h1, h2 {
+  font-weight: normal;
+}
+
+// Assume h1 never appears twice in a document
+h1 {
+  @extend %top-headers;
+  text-align: center;
+  // A horizontal line after h1
+  &::after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    max-width: 90%;
+    border-bottom: 1px solid #aaa;
+    padding-top: .3em;
+  }
+}
+
+h2 {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: .2em;
+}
+
+/// Pandoc or R Markdown's classes
+
+.title, .subtitle, .author, .date {
+  @extend %top-headers;
+}
+
+#TOC {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background: #fafafa;
+  padding: .5em;
+
+  h2 {
+    font-variant: small-caps;
+    border: 0;
+    margin: 0 auto;
+    font-size: 1.2rem;
+  }
+}

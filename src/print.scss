@@ -1,0 +1,68 @@
+@use 'shared' as *;
+
+h1, .title, .subtitle, .author, .date {
+  @extend %top-headers;
+}
+h1.title {
+  font-weight: bold;
+}
+
+// Sometimes we make h3 inline to save space on printed media
+h3.inline {
+  display: inline-block;
+}
+
+@page {
+  size: A4;
+  margin: 15mm 25mm 25mm 25mm;
+  @bottom-center {
+    content: counter(page) ' / ' counter(pages);
+  }
+}
+
+// According to <https://pagedjs.org/posts/so-long-@media-screen!/>, for
+// paged.js over 0.4.0, `pagedjs-ignore` must be added here
+@media screen, pagedjs-ignore {
+  // for previewing
+  html {
+    font-size: 16px;
+  }
+  .pagedjs_page {
+    margin: 1em auto;
+    outline: 1px solid gray;
+  }
+}
+@media print {
+  // font specs for print is already defined in `_fonts.scss`, so no worries
+  body {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  table, blockquote, pre {
+    page-break-inside: avoid;
+  }
+  pre {
+    word-wrap: break-word;
+  }
+  h1 { font-size: 1.5em; }
+  h2 { font-size: 1.25em; }
+  h3 { font-size: 1.1em; }
+  h4 { font-size: 1em; }
+  h5 { font-size: .9em; }
+  h2, h3 { margin-block-start: 0.3em; margin-block-end: 0.4em; }
+}
+
+/* taken from https://www.adamhyde.net/some-pagedjs-info/ */
+@page {
+    @footnote {
+        border-top: double black 3px;
+        margin-top: 12px;
+        padding-top: 8px;
+        float: bottom;
+        font-size: .9em;
+        }
+}
+span.footnote { 
+    float: footnote;
+}

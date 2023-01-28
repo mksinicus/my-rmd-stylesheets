@@ -1,0 +1,179 @@
+@use 'shared';
+@use 'colors' as *;
+@use 'fonts' as * with (
+  $sans: true
+);
+
+// Fear not the `!important`s. They are to override the default style.
+
+$cursor: url(data:image/png;base64,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) 16 16;
+
+::selection {
+  background-color: #ffff77aa;
+}
+
+
+body {
+  cursor: $cursor, crosshair;
+
+  * {
+    transition: .3s all ease-in-out;
+  }
+}
+
+p {
+  margin: 1em;
+}
+
+.serif {
+  $main-font: $base-serif, $cjk-serif, $deva-serif, $arab-serif, serif;
+  font-family: $main-font;
+}
+h1, h2 {
+  $base-serif: "Literata 72pt", "Literata", "Noto Serif";
+  $main-font: $base-serif, $cjk-serif, $deva-serif, $arab-serif, serif;
+  font-family: $main-font;
+  font-variation-settings: "opsz" 72;
+}
+
+// titlepage
+@mixin titles($left, $bottom, $bg) {
+  position: absolute;
+  left: $left;
+  bottom: $bottom;
+  background-image: $bg !important;
+  background-clip: text !important;
+  text-align: left;
+  color: transparent;
+  padding: 0 !important;
+  font-variant: small-caps;
+}
+h1 {
+  &.title {
+    font-size: 2em !important;
+    @include titles(100px, 360px, linear-gradient(to left, crimson, $sisu));
+  }
+  &.subtitle {
+    font-size: 1.5em !important;
+    @include titles(100px, 280px, linear-gradient(to right, crimson, $sisu));
+  }
+}
+p.date, p.author {
+  position: absolute;
+  left: 100px;
+  margin-left: 0;
+  @extend .serif;
+  font-variant: oldstyle-nums;
+}
+p.author {
+  bottom: 190px;
+}
+p.date {
+  bottom: 130px;
+}
+
+// slides
+div.slide {
+  &:not(.titlepage) {
+    padding: 10px 60px !important;
+    border-top: 120px solid $sisu;
+    border-image: linear-gradient(60deg, $sisu, $sisu-lighter) 1 0 1 0 stretch;
+  }
+  &.gratias {
+    background: linear-gradient(to right, $sisu, $sisu-lighter);
+    border: 0 !important;
+    h1 {
+      position: aboslute;
+      top: 25vh !important;
+      width: 90vw !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      text-align: center;
+      font-size: 3em;
+    }
+  }
+}
+div.level2 h1 {
+  position: unset;
+  margin: {
+    top: -1.8em;
+    left: .7em;
+  }
+  color: #fff;
+}
+
+// It's within the TOC
+a.titleslide {
+  font-style: normal !important;
+  text-decoration: underline;
+}
+
+.toolbar {
+  height: 2em !important;
+  line-height: 2em !important;
+}
+
+li ul li {
+  font-style: normal !important;
+
+  & + li {
+    margin-top: -.5em;
+  }
+}
+
+strong {
+  text-decoration: underline wavy crimson;
+}
+del {
+  color: #aaa;
+  h1 & {
+    color: #39d;
+  }
+}
+
+li p {
+  margin: .5em 1em;
+}
+ol, ul {
+  li {
+    margin-bottom: .3em;
+  }
+}
+
+.footnote {
+  font-size: .8em;
+  margin: 0;
+}
+@media screen {
+  .footnote {
+    position: absolute;
+    bottom: 3.5rem;
+  }
+}
+.footnote::before {
+  content: " ";
+  display: block;
+  width: 61vw;
+  margin-left: 2.5rem;
+  margin-bottom: .5rem;
+  border-bottom: 3px dotted #ddd;;
+}
+
+.margin-mend {
+  margin-top: -1em;
+}
+
+// On print, set each page to 1080P 16:9
+@page {
+  size: 1920px 1080px;
+}
+@media print {
+  h1.title, h1.subtitle {
+    background-image: unset !important;
+    -webkit-background-clip: unset !important;
+    color: rgb(57, 78, 144) !important;
+  }
+  h1.subtitle {
+    color: rgb(159, 42, 91) !important;
+  }
+}

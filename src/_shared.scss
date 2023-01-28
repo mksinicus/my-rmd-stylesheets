@@ -1,0 +1,405 @@
+@use 'colors';
+
+h1, h2, h3, h4, h5 {
+  line-height: 1.3em;
+  margin: 1.1rem 0;
+  & + h4 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+h3, h4, h5 {
+  font-weight: bold;
+}
+h4 + h4 {
+  margin-top: 0rem;
+}
+
+// Variables
+$link-color: #4183c4;
+
+// Mixins
+@mixin card($bg, $border-color) {
+  background: $bg;
+  border-left: 5px solid $border-color;
+  margin: .5em 0;
+  margin-right: auto;
+  padding: .4em 1.5rem;
+  padding-left: calc(1.5em - 5px);
+  // I love this!
+  & & {
+    padding-right: 0;
+  }
+}
+
+%top-headers {
+  text-align: center;
+  border: 0;
+  font-weight: normal;
+}
+
+
+blockquote {
+  @include card(#fafafa, #ccc);
+}
+
+u:lang(zh) {
+  text-underline-position: under;
+}
+
+.maxwidth {
+  max-width: 100%;
+}
+.maxamp, img, iframe, video, math {
+  @extend .maxwidth;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+hr {
+  border-style: solid;
+  color: #ddd;
+}
+
+%block-margin {
+  margin: .7em 0;
+}
+%block-centered {
+  margin: .7em auto;
+}
+
+p, ol, ul, pre, dl {
+  @extend %block-margin;
+}
+table, figure {
+  display: table;
+  @extend %block-centered;
+}
+caption, figcaption {
+  display: table-caption;
+  caption-side: bottom;
+  text-align: center;
+  margin-top: .1em;
+}
+
+li ul, li ol {
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+// Code and other monospace stuff
+@mixin bg-rad($bg, $rad) {
+  backgrond-color: $bg;
+  border: 1px solid #d7d7d7;
+  border-radius: $rad;
+}
+pre, code {
+  background-color: #f6f6f6;
+}
+kbd {
+  @include bg-rad(#fafafa, 4px);
+  padding: 0 .3em;
+}
+code {
+  @include bg-rad(#f6f6f6, 2px);
+}
+pre {
+  border: none;
+  border-left: 5px solid #236;
+  padding: .5em 1.5em;
+  white-space: nowrap;
+  overflow: auto;
+  code {
+    background-color: transparent;
+    display: block;
+    border: 0;
+    margin: 0;
+  }
+}
+
+sub, sup, a[class*="footnote"] {
+  line-height: 1rem;
+}
+
+sub, sup, a[class*="footnote"] {
+  line-height: 1rem;
+}
+
+// Table
+table {
+  border-collapse: collapse;
+}
+th {
+  text-align: center;
+}
+td, th {
+  border: 1px solid #d8d8d8;
+  padding: .3em .4em;
+}
+thead, tfoot {
+  background: #eaeaea;
+}
+tr:nth-child(even) {
+  background: #f5f5f5;
+}
+// Enable default centering for cells that span across multiple columns
+td[colspan] {
+  text-align: center;
+}
+
+// Disable pandoc-generated colgroup element, liberate the cells!
+colgroup {
+  display: none;
+}
+
+// Citations (`q`, `cite`) are omitted since pesudo-elements won't work with
+// cjtypo.js which I plan to import in the future.
+
+// Pandoc's definition list, implemented as `dl`
+dt::after {
+  content: ":";
+  color: #aaa;
+}
+dd {
+  display: list-item;
+  margin-left: 2em;
+  &::marker {
+    color: colors.$sisu;
+  }
+}
+dl {
+  border: 1px solid colors.$sisu;
+  border-radius: 3px;
+  padding: 0;
+  padding-left: calc(1em - 1px)
+}
+
+mark, .mark {
+  background-color: #ffff77;
+}
+
+ruby > rt {
+  font-size: .7em;
+}
+
+// MathML
+math annotation {
+  outline: 1px dashed red;
+}
+
+// Fix tasklist's margin after hiding its list marker
+ul.task-list input {
+  margin-left: -1.3em;
+}
+
+div.sourceCode {
+  background-color: #f6f6f6;
+}
+
+// Small caps
+.sc {
+  font-variant: small-caps
+}
+
+.footnotes, .small, small {
+  font-size: .8em;
+}
+
+/// Mostly custom classes
+
+.indent {
+  p + p {
+    margin-top: -.6em;
+    text-indent: 2em;
+  }
+  &-all p {
+    text-indent: 2em;
+  }
+}
+
+
+// Attribution, and its shorthand
+.dixit, div.d, .said {
+  p {
+    text-align: right;
+    font-size: .95em;
+    &::before {
+      content: "— ";
+      color: #aaa;
+    }
+  }
+}
+
+.plenamp, .fullwidth {
+  width: 100%;
+}
+
+.tcentro, .centered {
+  text-align: center;
+}
+
+// "Decentered" block, such as table
+.decentrato, .decentered {
+  margin: {
+    left: 0;
+    right: 0;
+  }
+}
+
+.tabulapuro, .cleantable {
+  table, th, tr, td {
+    border: 0;
+    font-weight: normal;
+    background: transparent;
+  }
+}
+
+// Flex row, for placing stuff horizontally
+.flexrow {
+  display: flex;
+  justify-content: space-around;
+
+  > div {
+    &:first-child {
+      margin-right: 1%;
+    }
+    &:last-child {
+      margin-left: 1%;
+    }
+  }
+  &.twocol > div {
+    &:first-child, &:last-child {
+      width: 48%;
+    }
+  }
+}
+
+// Numbered equation
+body {
+  counter-reset: eqno;
+}
+.eqno {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  $eqno: "(" counter(eqno) ")";
+  &::before, &::after {
+    content: $eqno;
+  }
+  &::before {
+    counter-increment: eqno;
+    visibility: hidden;
+  }
+}
+
+// Redacted
+.redacted, .heimu {
+  background-color: #000;
+  color: transparent;
+  transition: .3s all ease-in-out;
+  &:hover {
+    color: #fff;
+  }
+}
+
+// Emphasis marker for CJK
+span.cem {
+  font-style: normal;
+  padding: 0.2em 0;
+  background: {
+    image: radial-gradient(0.08em 0.08em at center center, 
+                                      currentColor, currentColor 70%, transparent);
+    size: 1em 0.3em;
+    position: bottom left;
+    repeat: repeat-x;
+  }
+}
+
+// Notecards
+.nota, .n, .notecard {
+  @include card(#dcf4ff, #89acd7)
+}
+.alert {
+  @include card(#e1c542, #fef1b6)
+}
+.warning {
+  @include card(#d8454c, #ffcece)
+}
+.pex, .example {
+  @include card(#f4f4f4, #236)
+}
+
+div.n, div.nota {
+  & > & {
+    border-top: 1px solid #89acd7;
+  }
+}
+span.nota, span.n {
+  display: inline-block;
+  border: 1px solid #89ACD7;
+  background-color: #DCF4FF;
+  padding: 0.1em;
+  margin: 0 0.1em;
+  border-radius: 3px;
+}
+span.n, span.nota, div.nota.aside {
+  .indent &, .indent-all & {
+    text-indent: 0;
+  }
+}
+
+.rem {
+  &, & * {
+    font-size: 1rem !important;
+  }
+}
+
+.hidden, .occulto {
+  display: none;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+// GB-style citation's bibliography list
+@counter-style gb {
+  system: numeric;
+  symbols: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9";
+  prefix: "[";
+  suffix: "] ";
+}
+.gb ol {
+  list-style: gb !important;
+}
+
+// list with single parenthesis and double parentheses
+@counter-style paren {
+  system: numeric;
+  symbols: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9";
+  suffix: ")";
+}
+@counter-style parens {
+  system: numeric;
+  symbols: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9";
+  prefix: "(";
+  suffix: ")";
+}
+.paren > ol {
+  list-style: paren;
+}
+.parens > ol {
+  list-style: parens;
+}
+

@@ -1,0 +1,25 @@
+@use 'fonts' as * with (
+  $sans: true
+);
+@use 'cjtypo';
+
+$force: false !default;
+
+@font-face {
+  font-family:punct;
+  src:local("Noto Sans CJK SC"),
+  local("Source Han Sans SC"),
+  local("Noto Sans CJK SC"),
+  local("Microsoft YaHei"),
+  local("黑体");
+  unicode-range: U+00B7, U+2014, U+2018-2019, U+201C-201D, U+2026, U+3001-3002, U+3008-300B, U+3010-3011, U+3014-3017, U+FF01, U+FF08-FF09, U+FF0C, U+FF0E, U+FF1A-FF1B, U+FF1F, U+FF3B, U+FF3D, U+FF5B, U+FF5D, U+FF5E;
+}
+
+body {
+  @if $force {
+    font-family: punct, $main-font, $fallback !important;
+  } @else {
+    font-family: punct, $main-font, $fallback;
+  }
+  
+}

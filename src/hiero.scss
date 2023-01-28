@@ -1,0 +1,36 @@
+// Use MathML to layout Egyptian Hieroglyphs, though this highly violates
+// semanticism; anyway I wrote this before I realized the importance of 
+// semantics, and now I just need to port everything I've written to SCSS.
+// So, let's do this.
+
+math.hiero {
+  font-size: 2.7em;
+  line-height: .6em;
+
+  mtext {
+    font-family: "Aegyptus", "Noto Sans Egyptian Hieroglyphs", sans-serif, 
+                 Unifont;
+  }
+  // Cartouche, box around pharoahs' names
+  .hcartouche {
+    border: 1px solid black;
+    border-radius:1em / 95%;
+    &::after {
+      content: "";
+      font-size: 1.6em;
+      line-height: 1em;
+      border-left: 1px solid black;
+    }
+    mrow {
+      &:first-child::before {
+        content: " ";
+        font-size: .5em;
+      }
+      &:last-child::after {
+        content: " ";
+        font-size: .2em;
+      }
+    }
+  }
+}
+
