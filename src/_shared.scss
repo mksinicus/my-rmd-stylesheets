@@ -218,14 +218,14 @@ div.sourceCode {
 
 /// Mostly custom classes
 
-.indent {
+.indent, .indent-all {
   p + p {
     margin-top: -.6em;
     text-indent: 2em;
   }
-  &-all p {
-    text-indent: 2em;
-  }
+}
+.indent-all p {
+  text-indent: 2em;
 }
 
 
