@@ -17,9 +17,9 @@ $force: false !default;
 
 body {
   @if $force {
-    font-family: punct, $main-font, $fallback !important;
+    font-family: $main-font, $fallback !important;
   } @else {
-    font-family: punct, $main-font, $fallback;
+    font-family: $main-font, $fallback;
   }
   
 }

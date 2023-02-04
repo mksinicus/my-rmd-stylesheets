@@ -1,0 +1,18 @@
+<script>
+  window.addEventListener('load', function () {
+    var cjTypo = new CJTypo({
+      lang: CJTypo.Lang.JP
+    })
+    cjTypo.render('[lang]:lang(ja)');
+    cjTypo = new CJTypo({
+      lang: CJTypo.Lang.SC,
+      strictMode: false
+    });
+    cjTypo.render('[lang]:lang(zh)');
+    cjTypo = new CJTypo({
+      lang: CJTypo.Lang.TC,
+      strictMode: false
+    });
+    cjTypo.render('[lang]:lang(zh-TW)');
+  });
+</script>

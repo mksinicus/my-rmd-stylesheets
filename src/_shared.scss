@@ -1,5 +1,18 @@
 @use 'colors';
 
+body {
+  line-height: 1.6em;
+  @media print {
+    line-height: 1.4em;
+  }
+}
+.vskip {
+  height: 1.6em;
+  @media print {
+    height: 1.4em;
+  }
+}
+
 h1, h2, h3, h4, h5 {
   line-height: 1.3em;
   margin: 1.1rem 0;
@@ -77,6 +90,9 @@ hr {
 
 p, ol, ul, pre, dl {
   @extend %block-margin;
+}
+ol, ul {
+  padding-left: 2em;
 }
 table, figure {
   display: table;
@@ -190,7 +206,8 @@ mark, .mark {
 }
 
 ruby > rt {
-  font-size: .7em;
+  font-size: .6em;
+  // margin-bottom: -.4em;
 }
 
 // MathML
@@ -220,7 +237,7 @@ div.sourceCode {
 
 .indent, .indent-all {
   p + p {
-    margin-top: -.6em;
+    margin-top: -.7em;
     text-indent: 2em;
   }
 }
@@ -313,19 +330,6 @@ body {
   }
 }
 
-// Emphasis marker for CJK
-span.cem {
-  font-style: normal;
-  padding: 0.2em 0;
-  background: {
-    image: radial-gradient(0.08em 0.08em at center center, 
-                                      currentColor, currentColor 70%, transparent);
-    size: 1em 0.3em;
-    position: bottom left;
-    repeat: repeat-x;
-  }
-}
-
 // Notecards
 .nota, .n, .notecard {
   @include card(#dcf4ff, #89acd7)
@@ -402,4 +406,3 @@ span.n, span.nota, div.nota.aside {
 .parens > ol {
   list-style: parens;
 }
-

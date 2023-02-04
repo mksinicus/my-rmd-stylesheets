@@ -11,3 +11,7 @@
 .extra-spaced {
   letter-spacing: .25em;
 }
+
+[data-align-last-split-element="justify"] {
+  text-align-last: unset !important;
+}

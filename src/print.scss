@@ -1,5 +1,19 @@
 @use 'shared' as *;
 
+/* The font glyph-correction is part of hugo-theme-meme <https://github.com/reuixiy/hugo-theme-meme>
+ * Copyright (c) 2019 reuixiy and the contributors. License: MIT */
+@font-face { 
+  font-family: "glyph-correction";
+  src: url(data:font/woff2;base64,d09GMgABAAAAAAMUAAsAAAAAB7AAAALIAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAABmAAgloRCAqCIIFpATYCJAMMCwwABCAFhloHIBuqBhFFnMm+KuDJnFEhIlcJOfgRvG/rpjk02zwPnq/9Xs99uyFCReASTQDqxzGNB7Lc1qEu68a2rLcDFxUb9zeAd/gAeNvWlS+p0Wk2jEbQCOIXZN1OZs6s7SGygNTl4QdIAVOcbax8yshynv+5JtABHVB9kjM64FVyVGC3cIFnY7ROZO+AN5AhjTeMXV4k42iNbGIHJBqNb9FpbGB5MrWsb7yTEm4j41W36a7T6ckxIAAWCRQipcqShBabqEQFvUPR5ADOOGIZr9xG+kZGR8YbA0qUqfDDrRsX/WWxR/8RAZwnxmABYAeAM2APVAJNSK6nZGGDcnX0xLv2LL8Ur1x6ge1JkY/Y+DCwUJwRFtJPU/DkvKKXDcvBFyLlxKWgc2yJu258F+MRXhMaWhMe1uPcr4dijzSMR6qBiU9580c5BYuLhUWzh/l5h31cpAb+IiCQX4FeJ4EBYgpRwr4tEHguP1hr8Sj47+iiwfKvgXPPAN9mTVmIp755Usd9UQncTu4hlNH7/+5EA/IEMsk4AtiRiTornTs3RfKOao/gSQcECwcmQBHGvFBD5ADsSONUaA9Hf0Ah2gl4zfcIhEi5AAt3eQ+KPPkCmkjLG+yot7KF9vAx96pe4ZKDA7bbim7NM1FkQ6frL4EOWrHvvHEi9toRmUZpfVq2fh6bXnrjp+3ItoX1PX0k7obkuaDq1q5ky72X9zJ35lDbvhzbIp7n6Aa9ek0hjrkkicyGlsN6OgKCZ4k4FbMaKgseF0olfcLj/wqXHByw3VZ0a56JIlvBZrr+Euig3XaZN07EXjsyxFapKI2p0hoY+zy69NIO0t8gHNm28FQ+Tiy+TJwW4iqomcXtSrbce3kPLHbmyqGDDPpybIsMlUVDVTc2J63JQIhjI6tOGTEVtAYq6yt7ISB45sQxct1NB3HJgkFDF0pdeBaTFv/9kFQisgM=);
+  unicode-range: U+00B7, U+2022;
+}
+
+body {
+  text-align: justify;
+}
+a, hr {
+  color: #000;
+}
 h1, .title, .subtitle, .author, .date {
   @extend %top-headers;
 }

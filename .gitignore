@@ -1,4 +1,4 @@
-target/
 test/
-.pijul
-.ignore
+# .pijul
+# .ignore
+debug.*

@@ -21,7 +21,8 @@ slidy:
 
 print:
 	sass 'src/print.scss' | cleancss -O2 | "<style>\n" + $in + "\n</style>" | \
-	$"(open -r $"($env.HOME)/css/lib/paged-snippet.html")" + $in | \
+	$"<script src='(realpath third-party/paged.polyfill.js)'></script>\n" + $in |\
+	$"(open -r (realpath third-party/paged-snippet.html))\n" + $in | \
 	save -f "target/print.html"
 
 fonts: sans serif
@@ -50,10 +51,12 @@ hiero:
 
 cjtypo-sans:
 	sass 'src/cjtypo-sans.scss' | cleancss -O2 | "<style>\n" + $in + "\n</style>" | \
-	$"(open -r $"($env.HOME)/css/lib/cjtypo-snippet.html")" + $in | \
+	$"(open -r (realpath third-party/cjtypo-snippet.html))\n" + $in | \
+	$"<script src='(realpath third-party/cj-typo.js)'></script>\n" + $in | \
 	save -f "target/cjtypo-sans.html"
 
 cjtypo-serif:
 	sass 'src/cjtypo-serif.scss' | cleancss -O2 | "<style>\n" + $in + "\n</style>" | \
-	$"(open -r $"($env.HOME)/css/lib/cjtypo-snippet.html")" + $in | \
+	$"(open -r (realpath third-party/cjtypo-snippet.html))\n" + $in | \
+	$"<script src='(realpath third-party/cj-typo.js)'></script>\n" + $in | \
 	save -f "target/cjtypo-serif.html"

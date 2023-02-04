@@ -8,6 +8,9 @@ $deva-font: null;
 $arab-font: null;
 $math-font: null;
 $fallback: null;
+$main-sans: null;
+$main-serif: null;
+$tricks: 'glyph-correction', punct; 
 
 // For a trick for print media. Keep browsing.
 $base-sans: "Roboto", "Noto Sans", "DejaVu Sans";
@@ -30,6 +33,7 @@ $math-serif: "STIX Two Math", "STIX Two Text", math, serif;
   $arab-font: $arab-sans;
   $math-font: $math-sans;
   $fallback: sans-serif;
+  $main-sans: $tricks, $base-sans, $cjk-sans, $deva-sans, $arab-sans, $fallback;
 } @else {
   $base-font: $base-serif;
   $cjk-font: $cjk-serif;
@@ -37,21 +41,27 @@ $math-serif: "STIX Two Math", "STIX Two Text", math, serif;
   $arab-font: $arab-serif;
   $math-font: $math-serif;
   $fallback: serif;
+  $main-serif: $tricks, $base-serif, $cjk-serif, $deva-serif, $arab-serif, $fallback;
 }
 
 $mono-font: "Iosevka", "Sarasa Mono SC", "Noto Sans Mono", 
             "Noto Sans Mono CJK SC", "Consolas", "Microsoft YaHei", "HeiTi",
             monospace !important;
-$main-font: $base-font, $cjk-font, $deva-font, $arab-font, $fallback;
+$main-font: $tricks, $base-font, $cjk-font, $deva-font, $arab-font, $fallback;
+
+.serif {
+  font-family: $main-serif;
+}
+.sans {
+  font-family: $main-sans;
+}
 
 body {
   font-family: $main-font;
   font-size: 16px;
-  line-height: 1.6em;
   @media print {
     & {
-      font-size: 13px;
-      line-height: 1.4em;
+      font-size: 14px;
     }
   }
 }
@@ -92,8 +102,30 @@ code, kbd, pre {
   h1, h2, strong, th {
     // Variables are static once assigned... So we need to assign again.
     $cjk-font: $cjk-sans;
-    $main-font: $base-font, $cjk-font, $deva-font, $arab-font, $fallback;
+    // Assert print media always go with cj-typo
+    $main-font: $tricks, $base-font, $cjk-font, $deva-font, $arab-font, $fallback;
     font-family: $main-font;
     font-weight: bold;
+  }
+}
+
+// Emphasis marker for CJK
+@media screen {
+  span.cem {
+    font-style: normal;
+    padding: 0.2em 0;
+    background: {
+      image: radial-gradient(0.08em 0.08em at center center, 
+                                        currentColor, currentColor 70%, transparent);
+      size: 1em 0.3em;
+      position: bottom left;
+      repeat: repeat-x;
+    }
+  }
+}
+@media print {
+  span.cem {
+    text-emphasis: '\2022';
+    text-emphasis-position: under;
   }
 }
