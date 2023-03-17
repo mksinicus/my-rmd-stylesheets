@@ -286,7 +286,10 @@ div.sourceCode {
 .flexrow {
   display: flex;
   justify-content: space-around;
-
+  &.flexcent {
+    align-items: center;
+  }
+  
   > div {
     &:first-child {
       margin-right: 1%;
