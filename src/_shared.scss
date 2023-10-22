@@ -81,11 +81,13 @@ hr {
   color: #ddd;
 }
 
+$block-margin-tb: .8em;
+
 %block-margin {
-  margin: .7em 0;
+  margin: $block-margin-tb 0;
 }
 %block-centered {
-  margin: .7em auto;
+  margin: $block-margin-tb auto;
 }
 
 p, ol, ul, pre, dl {
@@ -202,7 +204,7 @@ dl {
 }
 
 mark, .mark {
-  background-color: #ffff77;
+  background-color: #ffff77 !important;
 }
 
 ruby > rt {
@@ -233,11 +235,21 @@ div.sourceCode {
   font-size: .8em;
 }
 
+del {
+  &:lang(zh), &:lang(ja) {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 50%;
+    background-size: 100% 2px;
+    background-repeat: repeat-x;
+    text-decoration: none;
+  }
+}
+
 /// Mostly custom classes
 
 .indent, .indent-all {
   p + p {
-    margin-top: -.7em;
+    margin-top: -$block-margin-tb;
     text-indent: 2em;
   }
 }

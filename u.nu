@@ -19,6 +19,6 @@ def add-commit-push [] {
 alias acp = add-commit-push
 
 def commit-update [] {
-  let today = (date now | date format %F)
+  let today = (date now | format date %F)
   git commit -m $'Update ($today)'
 }

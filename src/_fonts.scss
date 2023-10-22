@@ -10,18 +10,18 @@ $math-font: null;
 $fallback: null;
 $main-sans: null;
 $main-serif: null;
-$tricks: 'glyph-correction', punct; 
+$tricks: 'glyph-correction', punct;
 
 // For a trick for print media. Keep browsing.
 $base-sans: "Roboto", "Noto Sans", "DejaVu Sans";
-$cjk-sans: "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei",
-           "HeiTi";
-$deva-sans: "Noto Sans Devanagari"; 
+$cjk-sans: "Sarasa Gothic SC", "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei",
+  "HeiTi";
+$deva-sans: "Noto Sans Devanagari";
 $arab-sans: "Noto Sans Arabic";
 $math-sans: "Fira Math", "FiraGO", math, sans-serif;
-$base-serif: "Gentium Plus", "STIX Two Text", Times, "Noto Serif";
+$base-serif: "FreeSerif", "Galatia SIL", "STIX Two Text", Times, "Noto Serif";
 $cjk-serif: "Noto Serif CJK SC", "Source Han Serif SC", "华文中宋",
-           "HanaMinB";
+  "HanaMinB";
 $deva-serif: "Siddhanta", "Noto Serif Devanagari";
 $arab-serif: "Noto Naskh Arabic";
 $math-serif: "STIX Two Math", "STIX Two Text", math, serif;
@@ -33,47 +33,76 @@ $math-serif: "STIX Two Math", "STIX Two Text", math, serif;
   $arab-font: $arab-sans;
   $math-font: $math-sans;
   $fallback: sans-serif;
-  $main-sans: $tricks, $base-sans, $cjk-sans, $deva-sans, $arab-sans, $fallback;
-} @else {
+  $main-sans: $tricks,
+  $base-sans,
+  $cjk-sans,
+  $deva-sans,
+  $arab-sans,
+  $fallback;
+}
+
+@else {
   $base-font: $base-serif;
   $cjk-font: $cjk-serif;
   $deva-font: $deva-serif;
   $arab-font: $arab-serif;
   $math-font: $math-serif;
   $fallback: serif;
-  $main-serif: $tricks, $base-serif, $cjk-serif, $deva-serif, $arab-serif, $fallback;
+  $main-serif: $tricks,
+  $base-serif,
+  $cjk-serif,
+  $deva-serif,
+  $arab-serif,
+  $fallback;
 }
 
-$mono-font: "Iosevka", "Sarasa Mono SC", "Noto Sans Mono", 
-            "Noto Sans Mono CJK SC", "Consolas", "Microsoft YaHei", "HeiTi",
-            monospace !important;
-$main-font: $tricks, $base-font, $cjk-font, $deva-font, $arab-font, $fallback;
+$mono-font: "Iosevka", "Sarasa Mono SC", "Noto Sans Mono",
+  "Noto Sans Mono CJK SC", "Consolas", "Microsoft YaHei", "HeiTi",
+  monospace !important;
+$main-font: $base-font, $cjk-font, $deva-font, $arab-font, $fallback;
 
 .serif {
   font-family: $main-serif;
 }
+
 .sans {
   font-family: $main-sans;
 }
 
-body {
+body,
+[lang] {
   font-family: $main-font;
-  font-size: 16px;
+
   @media print {
     & {
-      font-size: 14px;
+      font-size: 15px; // formerly 14px
     }
+  }
+}
+
+body {
+  font-size: 16px;
+}
+
+[lang]:lang(zh) {
+  font-family: $tricks, $main-font;
+
+  & body {
+    font-family: $tricks, $main-font;
   }
 }
 
 math {
   font-family: $math-font;
 }
+
 mtext {
   font-family: $main-font;
 }
 
-code, kbd, pre {
+code,
+kbd,
+pre {
   font-family: $mono-font;
   font-variant-ligatures: none;
 }
@@ -83,9 +112,11 @@ code, kbd, pre {
   font-family: $arab-font, $fallback;
   font-style: normal !important;
 }
+
 [lang]:lang(ar) {
   @extend %lang-ar;
 }
+
 .arab {
   @extend %lang-ar;
   font-size: 1.2em;
@@ -99,12 +130,25 @@ code, kbd, pre {
 // Here's the trick. It is unpreferable to use bold serif for CJK printed text.
 // No more `@font-face` tricks that suck at compatibility.
 @media print {
-  h1, h2, strong, th {
+
+  h1,
+  h2,
+  strong,
+  th {
     // Variables are static once assigned... So we need to assign again.
     $cjk-font: $cjk-sans;
     // Assert print media always go with cj-typo
-    $main-font: $tricks, $base-font, $cjk-font, $deva-font, $arab-font, $fallback;
+    $main-font: $base-font,
+    $cjk-font,
+    $deva-font,
+    $arab-font,
+    $fallback;
     font-family: $main-font;
+
+    [lang]:lang(zh) & {
+      font-family: $tricks, $main-font;
+    }
+
     font-weight: bold;
   }
 }
@@ -114,15 +158,17 @@ code, kbd, pre {
   span.cem {
     font-style: normal;
     padding: 0.2em 0;
+
     background: {
-      image: radial-gradient(0.08em 0.08em at center center, 
-                                        currentColor, currentColor 70%, transparent);
+      image: radial-gradient(0.08em 0.08em at center center,
+          currentColor, currentColor 70%, transparent);
       size: 1em 0.3em;
       position: bottom left;
       repeat: repeat-x;
     }
   }
 }
+
 @media print {
   span.cem {
     text-emphasis: '\2022';

@@ -1,8 +1,8 @@
 set shell := ['nu', '-c']
 
 # Lists all
-default:
-	just --list
+default: build
+	# just --list
 
 # Builds all
 build: styles fonts snippets

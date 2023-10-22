@@ -21,7 +21,7 @@ $padding: .1em .4em;
   // Not every `p`, because people may want to wrap the whole document inside.
   .original p {
     margin: 0;
-    padding: $padding;
+    // padding: $padding;
     text-indent: 0;
   }
 
@@ -45,20 +45,30 @@ $padding: .1em .4em;
   }
 
    // Text in the first row are expected to have been split by morpheme
-  tr:nth-child(1) td {
-    font-style: italic;
-  }
-  &.no-italic tr:nth-child(1) {
+  // tr:nth-child(1) td {
+  //   font-style: italic;
+  // }
+  &.no-italic tr:nth-child(1) td {
     font-style: normal;
   }
 
   // The line with glossings are usually smaller
-  tr:nth-child(2) {
-    font-size: .9em;
+  &:not(.normal) {
+    tr:nth-child(2) {
+      font-size: .9em;
+    }
+    tr:nth-child(1) td {
+      font-style: italic;
+    }
   }
-
   td, caption {
     padding: $padding;
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+    }
   }
   
   // Allow caption to span beyond max width of table contents.
