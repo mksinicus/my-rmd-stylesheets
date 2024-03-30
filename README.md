@@ -5,10 +5,9 @@ presentation with W3C Slidy.
 
 ## Build and usage
 
-You will need [Dart SASS](https://sass-lang.com/dart-sass) and [Just](https://github.com/casey/just)
+You will need [Dart SASS](https://sass-lang.com/dart-sass) and [Nushell](https://github.com/nushell/nushell)
 to build, and [Clean CSS](https://github.com/clean-css/clean-css) to minimize.
-I personally use Nushell, but I believe it would be easy to translate these
-building commands into Bash. Or you can just download the output inside the
+Or you can just download the output inside the
 `target/` directory.
 
 However, these styles are to be used with my template files, which are not 
